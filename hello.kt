@@ -13,12 +13,22 @@ class Hello {
 
 }
 
+fun testString(ts: String): Unit {
+  (0..10).iterator().forEach {
+    println("$it: $ts")
+  }
+}
+
 fun main() {
 
   val hello = Hello()
 
-  hello.subscribe({ println("Text: $it")})
-  hello.subscribe({ println("Agora vai: $it")})
+  hello.subscribe {
+    println("Text: $it")
+  }
+  hello.subscribe { println("Agora vai: $it") }
+  hello.subscribe({ println("Com parentesis: $it")})
+  hello.subscribe(::testString)
 
   println("Hello world")
 
